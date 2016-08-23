@@ -1,0 +1,50 @@
+
+* html table img {
+  behavior: expression(
+    (this.runtimeStyle.behavior = "none") && (this.pngSet
+      ? this.pngSet = true
+      : (this.nodeName == "IMG" && this.src.toLowerCase().indexOf('.png') > -1
+        ? (this.runtimeStyle.backgroundImage = "none",
+          this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.src + "', sizingMethod='image')",
+          this.src = "../img/transparent.gif")
+        : (this.origBg = this.origBg
+          ? this.origBg
+          : this.currentStyle.backgroundImage.toString().replace('url("', '').replace('")', ''),
+            this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.origBg + "', sizingMethod='crop')",
+            this.runtimeStyle.backgroundImage = "none"
+        )
+      ),
+      this.pngSet = true
+    )
+  );
+}
+
+/**
+ * AlphaImageLoader does not work with background-position
+ */
+* html .icon,
+* html .error,
+* html .warning,
+* html .info,
+* html .hint {
+  padding-left: 5px;
+  background-image: none;
+}
+
+* html .icon {
+  padding-left: 0;
+}
+
+* html #navigation ul li {
+  /* IE/Win gets upset if there is no bottom border... Go figure. */
+  border-bottom: 1px solid #5976b2;
+}
+
+* html fieldset {
+  background: #ebf3fa;
+  color: #000;
+}
+
+* html label {
+  clear: both;
+}
